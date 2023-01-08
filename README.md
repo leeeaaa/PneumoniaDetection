@@ -17,7 +17,7 @@ The goal of this work is to generate an AI which detects Pneumonia on a X-ray th
 
 
 ## Related Work
-Our work is based on a data set found on kaggle [2]. The data set is used in a lot of algorithms found on kaggle. Another project was found from University of California San Diego [3].
+Our work is based on a data set found on kaggle [2]. The data set is used in a lot of algorithms found on kaggle. The Approaches are very different, often they use CNN as network. Another project was found from University of California San Diego [3].
 
 
 ## Dataset and Features
@@ -42,7 +42,15 @@ Example for a PNEUMONIA X-ray thorax:
 HIER VIELLEICHT NOCH WAS ZU LOAD DATA
 
 ## Methods
-We wrote our algorithm from scratch. Its a neural network 
+We decided to implement the algorithm in three ways, the input and the output is always the same. 
+
+One algorithm is a neural network completly from scratch. We wanted to be as flexible as possible, which is why we also implemented the possibility to choose different amount and size of the hidden layers. Also the hyperparameters lambd, learning rate and number of iterations are adjustable. What we did not implement is the training of the hyperparameters. 
+
+The second algorithm is also a neural network but it uses Tensorflow. With the help of keras we load the data, create a model and predict the output. 
+
+The third algorithm is a convolutional neural network.
+
+The reason why we decided to implement all three methods is that we wanted to compare the efficeincy, the accuracy and the computational effort of these three. More about this later.
 
 
 ## Experiments/Results/Discussion
