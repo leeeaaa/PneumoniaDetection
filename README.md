@@ -8,7 +8,7 @@ Kevin Gavagan (...)
 Lea Soffel (4962704)
 
 ## Abstract
-
+In this article we describe the development of 3 algorithms to detect Pneumonia disease on X-ray thorax images. Pneumonia is one of the most fatal infections worldwide, especially for young people under 5 and people over 65 the disease often ends deadly. Because young people dont show any signs, imaging methods such as X-ray or CT are used to detect the disease. Why not let an AI do it for you?
 
 ## Introduction
 Pneumonia is an inflammation of the lung tissue especially the air sacs in one or both lungs. Symptoms of Pneumonia are cough, shortness of breath, chest pain, fever and dyspnea. The symptomps vary depending on age, health problems, weakened immune system and type of germ, which causes the infection. For example young people often dont show any symtomps at all. Pneumonia is one of the most fatal infectious disease worldwide. In Germany around 400,000 to 600,000 people die per year because of Pneumonia disease. Especially for children under 5 it is the most fatal infection. Pneumonia is caused by microorganisms such as bacteria, viruses and funghi, which can be visualized by imaging methods as X-ray or CT. Pneumonia can have a mild to life-threatening course.
