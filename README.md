@@ -21,10 +21,10 @@ Our work is based on a data set found on kaggle [2]. The data set is used in a l
 
 ## Dataset and Features
 Our work is based on a data set found on kaggle [2]. The dataset contains 5,856 labeled X-ray thorax images (JPEG). These iamges are split into to sets, a training set and a test set. Each set is divided into two sets, NORMAL and PNEUNOMIA. For training we have 5,232 images divided into 1,349 NORMAL and 3,883 PNEUMONIA. To test the algorithm we have 624 images divided into 234 NORMAL and 390 PNEUMONIA. 
-Total | Training set | Test set |
------ | ------------ | -------- |
-5,856 | 5,232        |  624     |
-100%  | 89,34%       | 10,66%   |
+                 | Total | Training set | Test set |
+                 | ----- | ------------ | -------- |
+Number of Images | 5,856 | 5,232        |  624     |
+Percentage       | 100%  | 89,34%       | 10,66%   |
 
 The original image size varies and is extremely big, so we wrote a python script to down scale all images to size 224x224. You can find the python script in the repository (PythonImageScaler.py). 
 Because of the fact that we use grayscale images we only need one color attribute per pixel, instead of three (RGB).
