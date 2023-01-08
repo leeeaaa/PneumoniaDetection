@@ -2,7 +2,9 @@
 
 ### Author
 Lukas Benner (...)
+
 Kevin Gavagan (...)
+
 Lea Soffel (4962704)
 
 ## Abstract
@@ -24,12 +26,16 @@ Total | Training set | Test set |
 5,856 | 5,232        |  624     |
 100%  | 89,34%       | 10,66%   |
 
-The original image size varies and is extremely big, so we wrote a python script to down scale all images to size 224x224. You can find the python script in the repository. Because of the fact that we use grayscale images we only need one color attribute per pixel, instead of three (RGB).
+The original image size varies and is extremely big, so we wrote a python script to down scale all images to size 224x224. You can find the python script in the repository (PythonImageScaler.py). 
+Because of the fact that we use grayscale images we only need one color attribute per pixel, instead of three (RGB).
 The X-ray images are from patients age one to five from Guangzhou Women and Children's Medical Center [4].
 Example for a NORMAL X-ray thorax:
 ![NORMAL](/scaled_chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg)
+
 Example for a PNEUMONIA X-ray thorax:
 ![PNEUMONIA](/scaled_chest_xray/test/PNEUMONIA/BACTERIA-1135262-0004.jpeg)
+
+
 HIER VIELLEICHT NOCH WAS ZU LOAD DATA
 
 ## Methods
