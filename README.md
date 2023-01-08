@@ -44,11 +44,22 @@ HIER VIELLEICHT NOCH WAS ZU LOAD DATA
 ## Methods
 We decided to implement the algorithm in three ways, the input and the output is always the same. 
 
-One algorithm is a neural network completly from scratch. We wanted to be as flexible as possible, which is why we also implemented the possibility to choose different amount and size of the hidden layers. Also the hyperparameters lambd, learning rate and number of iterations are adjustable. What we did not implement is the training of the hyperparameters. 
+One algorithm is a neural network completly from scratch. We wanted to be as flexible as possible, which is why we also implemented the possibility to choose different amount and size of the hidden layers. Also the hyperparameters lambd, learning rate and number of iterations are adjustable. What we did not implement is the training of the hyperparameters.
+cost function: ?
+hyperparameter: ?
+architecture: ?
 
 The second algorithm is also a neural network but it uses Tensorflow. With the help of keras we load the data, create a model and predict the output. 
+cost function: ?
+hyperparameter: ?
+architecture: ?
+
 
 The third algorithm is a convolutional neural network.
+cost function: ?
+hyperparameter: ?
+architecture: ?
+
 
 The reason why we decided to implement all three methods is that we wanted to compare the efficeincy, the accuracy and the computational effort of these three. More about this later.
 
