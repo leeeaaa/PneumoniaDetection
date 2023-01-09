@@ -8,11 +8,14 @@ Kevin Gavagan (...)
 Lea Soffel (4962704)
 
 ## Abstract
-In this article we describe the development of 3 algorithms to detect Pneumonia disease on X-ray thorax images. Pneumonia is one of the most fatal infections worldwide, especially for young people under 5 and people over 65 the disease often ends deadly. Because young people dont show any signs, imaging methods such as X-ray or CT are used to detect the disease. Why not let an AI do it for you?
+In this article we describe the development of 3 algorithms to detect Pneumonia disease on X-ray thorax images. Pneumonia is one of the most fatal infections worldwide, especially for young people under 5 and people over 65 the disease often ends deadly. Because young people dont show any signs, imaging methods such as X-ray or CT are used to detect the disease. In the past years the topic of using an AI to detect diseases is becoming an increasingly important issue. So why not let an AI do it for you?
 
 ## Introduction
-Pneumonia is an inflammation of the lung tissue especially the air sacs in one or both lungs. Symptoms of Pneumonia are cough, shortness of breath, chest pain, fever and dyspnea. The symptomps vary depending on age, health problems, weakened immune system and type of germ, which causes the infection. For example young people often dont show any symtomps at all. Pneumonia is one of the most fatal infectious disease worldwide. In Germany around 400,000 to 600,000 people die per year because of Pneumonia disease. Especially for children under 5 it is the most fatal infection. Pneumonia is caused by microorganisms such as bacteria, viruses and funghi, which can be visualized by imaging methods as X-ray or CT. Pneumonia can have a mild to life-threatening course.
-Because of the fact that newborns often dont show any signs of the disease the possibility of detecting Pneumonia by imaging methods such as X-ray or CT is an important medical method. In the past years the topic of using an AI to detect diseases is becoming an increasingly important issue.
+Pneumonia is an inflammation of the lung tissue especially the air sacs in one or both lungs. Symptoms of Pneumonia are cough, shortness of breath, chest pain, fever and dyspnea. The symptomps vary depending on age, health problems, weakened immune system and type of germ, which causes the infection. For example young people often dont show any symtomps at all. Pneumonia is one of the most fatal infectious disease worldwide. In Germany around 400,000 to 600,000 people die per year because of Pneumonia disease. Especially for children under 5 it is the most fatal infection, killing more young people than maleria, AIDS and other diseases. Pneumonia is caused by microorganisms such as bacteria, viruses and funghi, which can be visualized by imaging methods as X-ray or CT. Pneumonia can have a mild to life-threatening course. Bacterial and viral agents are the popular causes but differ in their treatment methods. Bacterial pneumonia needs to be treated with antibiotics, whereas viral pneumonia is treated with antivirals and other supportive care. Therefore it is important to detect pneumonia in an early state to combat the bacteria or virus. 
+Because of the fact that newborns often dont show any signs of the disease the possibility of detecting Pneumonia by imaging methods such as X-ray or CT is an important medical method. Additionally, X-ray is a standard treatment and can help differentiate between the different cause for the infection [1-4].
+
+
+
 The goal of this work is to generate an AI which detects Pneumonia on a X-ray thorax image. Input is an grayscale imgae (224x224) of a X-ray thorax, with the help of a neural network, which we developed the algorithm outputs a 0 or a 1. 0 means no pneumonia, where as 1 means pneumonia is detected. In the future the use of the algorithm could be to support or validate the decision of doctors. We trained and tested the model with data of young people age 5 and less because they often show no symptomps.
 
 
@@ -72,7 +75,8 @@ The reason why we decided to implement all three methods is that we wanted to co
 
 
 ## References
-https://www.lungeninformationsdienst.de/krankheiten/lungenentzuendung/verbreitung
+[1] https://www.lungeninformationsdienst.de/krankheiten/lungenentzuendung/verbreitung
 [2] https://www.kaggle.com/datasets/tolgadincer/labeled-chest-xray-images
 [3] https://data.mendeley.com/datasets/rscbjbr9sj/2
 [4] https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
+[5] https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5
