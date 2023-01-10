@@ -16,7 +16,7 @@ Because of the fact that newborns often dont show any signs of the disease the p
 
 The image below shows X-ray thorax images of a person without pneumonia and a viral and a bacterial caused pneumonia [5].
 
-![TypesOfPneumonia](typesofpneumonia.jpg)
+![TypesOfPneumonia](assets/typesofpneumonia.jpg)
 
 The goal of this work is to generate an AI which detects Pneumonia on a X-ray thorax image. Input is an grayscale imgae (224x224) of a X-ray thorax, with the help of a neural network, which we developed the algorithm outputs a 0 or a 1. 0 means no pneumonia, where as 1 means pneumonia is detected. In the future the use of the algorithm could be to support or validate the decision of doctors. We trained and tested the model with data of young people age 5 and less because they often show no symptomps.
 
