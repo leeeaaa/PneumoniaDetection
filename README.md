@@ -54,10 +54,14 @@ A very weak model, which classifies all images as PNEUMONIA, will reach an accur
 | Number of Images | 5,856 | 5,232        | 624      |
 | Percentage       | 100%  | 89,34%       | 10,66%   |
 
-The original image size varies and is large in size. We wrote a python script to down scale all images. 
+The original images vary in size but overall most exceed over at least 1000 pixels in width. Therefore we wrote a python script to down scale all images, to make it easier to train the Networks.
 
 We scaled the images to 224x224 for both tensorflow versions. For the Neural Network from scratch we scaled the images to 56x56. The reason will be explained in chapter "Neural Network from scratch".
-You can find the python script in the repository as well (PythonImageScaler.py). 
+You can find the python script in the repository as well (PythonImageScaler.py).
+
+We also normalized all pixel values from each image from 0-255 to 0.0-1.0.
+
+Besides the two mentioned modifications we didn't perform any further data augmentations on the images. X-ray scans from the chest are always taken one specific way and variations such as flips and rotations will not exist in real X-ray images. That's why we didn't choose to implement more data augementations.
 
 As inputs to our Networks we will use all the pixel color values from one image. All images are given as grayscale images. This means each pixel can be described by just a single value rather than three, as this is the case for RGB values.
 
@@ -73,7 +77,6 @@ Example for a PNEUMONIA X-ray thorax:
 
 ![](scaled_chest_xray/test/PNEUMONIA/BACTERIA-1135262-0004.jpeg)
 
-We didn't perform any further data augmentations on the images because X-ray scans are from the chest are always taken one specific way, and variations such as flips and rotations will not exist in real X-ray images.
 
 ## Methods
 
