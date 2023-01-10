@@ -1,0 +1,1 @@
+﻿loss: 0.6502 - accuracy: 0.7628 - precision: 0.7559 - recall: 1.0000
