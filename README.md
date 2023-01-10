@@ -1,6 +1,6 @@
 # PneunomiaDetection
 
-### Author
+### Authors
 
 Lukas Benner (3277496)
 
