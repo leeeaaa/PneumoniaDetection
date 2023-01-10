@@ -3,7 +3,7 @@
 ### Author
 Lukas Benner (3277496)
 
-Kevin Gavagan (...)
+Kevin Gavagan (2240332)
 
 Lea Soffel (4962704)
 
