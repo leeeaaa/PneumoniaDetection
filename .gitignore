@@ -190,3 +190,5 @@ poetry.toml
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
 
 /logs
+*.h5 
+# ignore model checkpoints
