@@ -104,8 +104,10 @@ The reason why we decided to implement all three methods is that we wanted to co
 
 
 ## Experiments/Results/Discussion
-HIER DIE ACCURACIES UND UND UND
 
+Wichtige Erkenntnisse:
+- Accuracy ist hier nicht so aussagekräftig durch die ungleichmäßige Aufteilung der Daten
+- 
 
 ## Conclusion
 
