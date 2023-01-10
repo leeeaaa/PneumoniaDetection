@@ -80,14 +80,6 @@ Example for a PNEUMONIA X-ray thorax:
 
 ## Methods
 
-We decided that we would like to compare the performance of a neural network and a convolutional neural network.
-
-Implementing the neural network we wanted to try implementing it from scratch and compare it to a Tensorflow neural network afterwards. 
-
-Because implementing a convolutional network from scratch seems pretty complicated, we decided to use Tensorflow to build the CNN.
-
-Therefore we implemented three different solutions.
-
 ### Neural network from scratch
 
 We wanted to be as flexible as possible, which is why we implemented the possibility to choose different number of neurons per hidden layer and the number of hidden layers.
