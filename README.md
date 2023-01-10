@@ -9,11 +9,13 @@ Kevin Gavagan (2240332)
 Lea Soffel (4962704)
 
 ## Abstract
+
 In this article we describe the development of 3 coding approaches to detect Pneumonia disease on X-ray thorax images with the help of machine learning. Pneumonia is one of the most fatal infections worldwide, especially for young children under 5 and people over 65 the disease often ends deadly. Since young children often don't show any signs of Pneumonia, imaging methods such as X-ray or CT are used to detect the disease. In the past years the topic of using an AI to detect diseases has become an increasingly important issue. So why not let an AI do it for you?
 
 - What is the result of our work?
 
 ## Introduction
+
 Pneumonia is an inflammation of the lung tissue especially the air sacs in one or both lungs. Symptoms of Pneumonia are cough, shortness of breath, chest pain, fever and dyspnea. The symptomps vary depending on age, health problems, weakened immune system and type of germ, which causes the infection. For example young people often don't show any symtomps at all. Pneumonia is one of the most fatal infectious disease worldwide. In Germany around 400,000 to 600,000 people die per year because of Pneumonia. Especially for children under the age of 5 Pneumonia is the most fatal infection, killing more young people than maleria, AIDS and other diseases. Pneumonia is caused by microorganisms such as bacteria, viruses and funghi, which can be visualized by imaging methods as X-ray or CT. Pneumonia can have a mild to life-threatening course. Bacterial and viral agents are the popular causes but differ in their treatment methods. Bacterial pneumonia needs to be treated with antibiotics, whereas viral pneumonia is treated with antivirals and other supportive care. Therefore it is important to detect pneumonia in an early state to combat the bacteria or virus. 
 Because of the fact that newborns often don't show any signs of the disease the possibility of detecting Pneumonia by imaging methods such as X-ray or CT is an important medical method. Additionally, X-ray is a standard treatment and can help differentiate between the different cause for the infection [1-5].
 
@@ -22,6 +24,7 @@ The image below shows X-ray thorax images of a person without pneumonia and a vi
 ![](assets/typesofpneumonia.jpg)
 
 We developed three different versions to train different network models.
+
 - A Neural Network implemented and trained from scratch in python
 - A Neural Network implemented and trained with tensorflow
 - A Convolutional Neural Network implemented and trained with tensorflow
@@ -78,7 +81,7 @@ Because implementing a convolutional network from scratch seems pretty complicat
 
 Therefore we implemented three different solutions.
 
-### 1. Neural network from scratch
+### Neural network from scratch
 
 We wanted to be as flexible as possible, which is why we also implemented the possibility to choose different amount and size of the hidden layers. The hyperparameters lambda, learning rate and number of iterations are also adjustable. 
 
@@ -90,7 +93,7 @@ hyperparameter: ?
 
 architecture: ?
 
-### 2. Neural network with Tensorflow
+### Neural network with Tensorflow
 
 The second algorithm is also a neural network but it uses Tensorflow. With the help of keras we load the data, create a model and predict the output.
 
@@ -116,7 +119,7 @@ The output layer is a single neuron with a sigmoid activation function.
 
 We didn't decide on one specific architecture because we wanted to try different architectures and compare the results.
 
-### 3. Convolutional neural network with Tensorflow
+### Convolutional neural network with Tensorflow
 
 The model is built using a convolutional neural network composed by five convolutional blocks comprised of convolutional layer, max-pooling and batch-normalization, a flatten layer and four fully connected layers.
 
@@ -128,7 +131,11 @@ The CNN uses the same dataset, optimizer and callbacks as the NN described above
 
 
 
+### Neural network from scratch
 
+### Neural network with Tensorflow
+
+### Convolutional neural network with Tensorflow
 
 ## Conclusion
 
