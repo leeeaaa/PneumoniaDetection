@@ -78,7 +78,6 @@ Example for a PNEUMONIA X-ray thorax:
 
 ![](scaled_chest_xray/test/PNEUMONIA/BACTERIA-1135262-0004.jpeg)
 
-
 ## Methods
 
 ### Neural network from scratch
@@ -100,7 +99,6 @@ The loss function we use, is the logistic loss which is expressed by the followi
 $\mathcal{L}(\hat{y},y)=-(y^{(i)}*log_{10}(\hat{y}^{(i)})+(1-y^{(i)})*log_{10}(1-\hat{y}^{(i)}))$
 
 The training of the network proofed to be rather cumbersome to even do with the scaled version of 224x224 Pixels. This is the reason why Neural Networks are not as good as Convolutional Neural Networks in Image Classification and Computervision in general. Therefore, we reduced the size even more, to a size of 54x54 Pixels.
-
 
 ### Neural network with Tensorflow
 
@@ -146,9 +144,29 @@ In the following chapters we are going to describe the training results and disc
 
 ### Neural network with Tensorflow
 
-As expected, this model didn't perform as good as the CNN. This model tends to overfit the training set although we used regularization.
+We trained the model with the following parameters:
 
-On the other hand 
+- Batch size: 32
+
+- Number epochs: 30
+
+- initial learning rate: 0.1
+
+After the training was completed, the model scored the following values on the test set:
+
+- Loss: 0.6502
+
+- Accuracy: 0.7628
+
+- Precision: 0.7559
+
+- Recall: 1.0000
+
+- F1: 0.861
+
+As expected, according to the F1 and the accuracy score, this model didn't perform as good as the CNN. 
+
+
 
 ### Convolutional neural network with Tensorflow
 
@@ -162,7 +180,7 @@ We trained the model with the following parameters:
 
 - initial learning rate: 0.1  
 
-After the training was completet, the model scored the following values on the test set:
+After the training was completed, the model scored the following values on the test set:
 
 - Loss: 0.1132
 
