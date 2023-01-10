@@ -30,7 +30,7 @@ The goal is to see what different results each version produces, to analyze how 
 
 ## Related Work
 
-Our work is based on a data set found on kaggle [2]. The data set is used in a lot of algorithms found on kaggle. The Approaches are very different, often they use CNN as network. Another project was found from University of California San Diego [3].
+Our work is based on a dataset found on kaggle [2]. The data set is used in a lot of algorithms found on kaggle. The Approaches are very different, often they use CNN as network. Another project was found from University of California San Diego [3].
 HIER MUSS NOCH MEHR CONTEXT HIN
 
 ## Dataset and Features
@@ -39,24 +39,28 @@ Our work is based on a data set found on kaggle [2].
 
 The X-ray images are from patients aged one to five from Guangzhou Women and Children's Medical Center [4]. 
 
-The dataset contains 5,856 labeled X-ray thorax images (JPEG). These images are split into to sets, a training set and a test set. Each set is divided into two sets, NORMAL and PNEUNOMIA. For training we have 5,232 images divided into 1,349 NORMAL and 3,883 PNEUMONIA. To test the algorithm we have 624 images divided into 234 NORMAL and 390 PNEUMONIA. 
+The dataset contains 5,856 labelled X-ray thorax images (JPEG). These images are split into to sets, a training set and a test set. Each set is divided into two sets, NORMAL and PNEUNOMIA. For training we have 5,232 images divided into 1,349 NORMAL and 3,883 PNEUMONIA. To test the algorithm we have 624 images divided into 234 NORMAL and 390 PNEUMONIA. 
 
 The amount of images being classified as PNEUMONIA is 4273. The number of images being classified as NORMAL is 1583, so the images classified as PNEUMONIA account for 73% of the data set. Therefore the dataset is imbalanced!
 
 The accuracy metric will therefore not be as meaningful as with a balanced dataset.
-A very weak model, which classifies all images as PNEUMONIA, will reach a accuracy of about 73%.
+A very weak model, which classifies all images as PNEUMONIA, will reach an accuracy of about 73%.
 
 |                  | Total | Training set | Test set |
 | ---------------- | ----- | ------------ | -------- |
 | Number of Images | 5,856 | 5,232        | 624      |
 | Percentage       | 100%  | 89,34%       | 10,66%   |
 
-The original image size varies and is extremely big, so we wrote a python script to down scale all images. 
+The original image size varies and is large in size. We wrote a python script to down scale all images. 
 
-In order to compare the performance between two different image resolutions we decided to scale the images to 224x224 and 56x56.
-You can find the python script in the repository (PythonImageScaler.py). 
+We scaled the images to 224x224 for both tensorflow versions. For the Neural Network from scratch we scaled the images to 56x56. The reason will be explained in chapter "Neural Network from scratch".
+You can find the python script in the repository as well (PythonImageScaler.py). 
 
-Because of the fact that we use grayscale images we only need one color attribute per pixel, instead of three (RGB).
+As inputs to our Networks we will use all the pixel color values from one image. All images are given as grayscale images. This means each pixel can be described by just a single value rather than three, as this is the case for RGB values.
+
+This dataset is treated as a classification problem. Here we only classify two different cases. Either the X-ray shows no signs of an infection ("NORMAL") or one can see Pneumonia developing in the lungs ("PNEUMONIA"). In the code we represent this binary classification as numbers:
+- "NORMAL" : 0
+- "PNEUMONIA" : 1
 
 Example for a NORMAL X-ray thorax:
 
@@ -66,7 +70,7 @@ Example for a PNEUMONIA X-ray thorax:
 
 ![](scaled_chest_xray/test/PNEUMONIA/BACTERIA-1135262-0004.jpeg)
 
-We didn't do any more data augmentation because X-ray scans are only taken in a specific orientation, and variations such as flips and rotations will not exist in real X-ray images.
+We didn't perform any further data augmentations on the images because X-ray scans are from the chest are always taken one specific way, and variations such as flips and rotations will not exist in real X-ray images.
 
 ## Methods
 
@@ -78,7 +82,7 @@ Because implementing a convolutional network from scratch seems pretty complicat
 
 Therefore we implemented three different solutions.
 
-### 1. Neural network from scratch
+### 1. Neural Network from scratch
 
 We wanted to be as flexible as possible, which is why we also implemented the possibility to choose different amount and size of the hidden layers. The hyperparameters lambda, learning rate and number of iterations are also adjustable. 
 
@@ -90,7 +94,7 @@ hyperparameter: ?
 
 architecture: ?
 
-### 2. Neural network with Tensorflow
+### 2. Neural Network with Tensorflow
 
 The second algorithm is also a neural network but it uses Tensorflow. With the help of keras we load the data, create a model and predict the output.
 
@@ -116,7 +120,7 @@ The output layer is a single neuron with a sigmoid activation function.
 
 We didn't decide on one specific architecture because we wanted to try different architectures and compare the results.
 
-### 3. Convolutional neural network with Tensorflow
+### 3. Convolutional Neural Network with Tensorflow
 
 The model is built using a convolutional neural network composed by five convolutional blocks comprised of convolutional layer, max-pooling and batch-normalization, a flatten layer and four fully connected layers.
 
