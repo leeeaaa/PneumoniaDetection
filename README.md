@@ -26,7 +26,7 @@ We developed three different versions to train different network models.
 - A Neural Network implemented and trained with tensorflow
 - A Convolutional Neural Network implemented and trained with tensorflow
 
-The goal is to see what different results each version produces, to analyze how they performed and to compare their advantages and disadvantages. We also aim to put our theoretical knowledge to pratical use in the most comprehensive way, by creating three different versions. 
+The goal is to see what different results each version produces, to analyze how they performed and to compare their advantages and disadvantages. Hereby we aim to put our theoretical knowledge to pratical use in the most comprehensive way, by creating three different versions. 
 
 ## Related Work
 
