@@ -62,6 +62,7 @@ You can find the python script in the repository as well (PythonImageScaler.py).
 As inputs to our Networks we will use all the pixel color values from one image. All images are given as grayscale images. This means each pixel can be described by just a single value rather than three, as this is the case for RGB values.
 
 This dataset is treated as a classification problem. Here we only classify two different cases. Either the X-ray shows no signs of an infection ("NORMAL") or one can see Pneumonia developing in the lungs ("PNEUMONIA"). In the code we represent this binary classification as numbers:
+
 - "NORMAL" : 0
 - "PNEUMONIA" : 1
 
@@ -110,6 +111,8 @@ The distribution is now the following:
 - 16% validation/dev set
 - 20% test files
 
+<img title="" src="assets/datasetVisualization.png" alt="" width="407">
+
 The model uses the "Adam" optimizer and the loss function is the binary cross-entropy one.
 We used drop out to reduce overfitting and implemented a correction for the imbalanced dataset.
 
@@ -133,13 +136,43 @@ The CNN uses the same dataset, optimizer and callbacks as the NN described above
 
 ## Experiments/Results/Discussion
 
-
+In the following chapters we are going to describe the training results and discuss how the different models perform on the given problem.
 
 ### Neural network from scratch
 
 ### Neural network with Tensorflow
 
+As expected, this model didn't perform as good as the CNN. This model tends to overfit the training set although we used regularization.
+
+On the other hand 
+
 ### Convolutional neural network with Tensorflow
+
+As expected, the convolutional neural network performed very well.
+
+We trained the model with the following parameters:
+
+- Batch size: 32
+
+- Number epochs: 30
+
+- initial learning rate: 0.1  
+
+After the training was completet, the model scored the following values on the test set:
+
+- Loss: 0.1132
+
+- Accuracy: 0.9556
+
+- Precision: 0.9915
+
+- Recall: 0.9477
+
+- F1: 0.9874
+
+According to the F1 score the model performs very good. 
+
+In the case of pneumonia, a higher recall would be preferable to a high precision. The reason is that the probability of a person with pneumonia being classified as such should idealy be 100%.
 
 ## Conclusion
 
