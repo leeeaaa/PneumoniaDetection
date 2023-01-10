@@ -54,10 +54,14 @@ A very weak model, which classifies all images as PNEUMONIA, will reach an accur
 | Number of Images | 5,856 | 5,232        | 624      |
 | Percentage       | 100%  | 89,34%       | 10,66%   |
 
-The original image size varies and is large in size. We wrote a python script to down scale all images. 
+The original images vary in size but overall most exceed over at least 1000 pixels in width. Therefore we wrote a python script to down scale all images, to make it easier to train the Networks.
 
 We scaled the images to 224x224 for both tensorflow versions. For the Neural Network from scratch we scaled the images to 56x56. The reason will be explained in chapter "Neural Network from scratch".
-You can find the python script in the repository as well (PythonImageScaler.py). 
+You can find the python script in the repository as well (PythonImageScaler.py).
+
+We also normalized all pixel values from each image from 0-255 to 0.0-1.0.
+
+Besides the two mentioned modifications we didn't perform any further data augmentations on the images. X-ray scans from the chest are always taken one specific way and variations such as flips and rotations will not exist in real X-ray images. That's why we didn't choose to implement more data augementations.
 
 As inputs to our Networks we will use all the pixel color values from one image. All images are given as grayscale images. This means each pixel can be described by just a single value rather than three, as this is the case for RGB values.
 
@@ -73,29 +77,29 @@ Example for a PNEUMONIA X-ray thorax:
 
 ![](scaled_chest_xray/test/PNEUMONIA/BACTERIA-1135262-0004.jpeg)
 
-We didn't perform any further data augmentations on the images because X-ray scans are from the chest are always taken one specific way, and variations such as flips and rotations will not exist in real X-ray images.
 
 ## Methods
 
-We decided that we would like to compare the performance of a neural network and a convolutional neural network.
-
-Implementing the neural network we wanted to try implementing it from scratch and compare it to a Tensorflow neural network afterwards. 
-
-Because implementing a convolutional network from scratch seems pretty complicated, we decided to use Tensorflow to build the CNN.
-
-Therefore we implemented three different solutions.
-
 ### Neural network from scratch
 
-We wanted to be as flexible as possible, which is why we also implemented the possibility to choose different amount and size of the hidden layers. The hyperparameters lambda, learning rate and number of iterations are also adjustable. 
+We wanted to be as flexible as possible, which is why we implemented the possibility to choose different number of neurons per hidden layer and the number of hidden layers.
 
-We did not implement the training of the hyperparameters.
+All hidden layers use as an activation function the Relu-function. Only the very last layer uses the sigmoid function to produce a probability that its either one (“Pneumonia”) or zero (“Normal”).
 
-cost function: ?
+As means of training the network, we use Batch Gradient Descent. This is the most CPU-intensive algorithm. It goes through all images of the train set and calculates gradients for each of the parameters. These determine how much and in which direction the weights should be updated to lower the cost.
 
-hyperparameter: ?
+Overfitting very quickly became a problem in our model. We implemented both L2-Regularization and Dropout to manage the relatively low accuracy on the test set. 
 
-architecture: ?
+L2-Regularization works by punishing higher weights in the model. This is done by creating the sum of all weights squared and letting this influence the overall cost of the model. Are the parameters high, then the cost will be high as well.
+
+The Dropout solutions works by deactivating random neurons in the network. With the “keep probability”-value, one can determine how many neurons will be deactivated, but it’s not possible to control which ones. This solution helps to reduce the size of the Neural Network whilst training it, which is a key component treating overfitting.
+
+The loss function we use, is the logistic loss which is expressed by the following formula:
+
+$\mathcal{L}(\hat{y},y)=-(y^{(i)}*log_{10}(\hat{y}^{(i)})+(1-y^{(i)})*log_{10}(1-\hat{y}^{(i)}))$
+
+The training of the network proofed to be rather cumbersome to even do with the scaled version of 224x224 Pixels. This is the reason why Neural Networks are not as good as Convolutional Neural Networks in Image Classification and Computervision in general. Therefore, we reduced the size even more, to a size of 54x54 Pixels.
+
 
 ### Neural network with Tensorflow
 
