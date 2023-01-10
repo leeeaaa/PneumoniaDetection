@@ -18,7 +18,7 @@ The image below shows X-ray thorax images of a person without pneumonia and a vi
 
 ![TypesOfPneumonia](assets/typesofpneumonia.jpg)
 
-The goal of this work is to generate an AI which detects Pneumonia on a X-ray thorax image. Input is an grayscale imgae (224x224) of a X-ray thorax, with the help of a neural network, which we developed the algorithm outputs a 0 or a 1. 0 means no pneumonia, where as 1 means pneumonia is detected. In the future the use of the algorithm could be to support or validate the decision of doctors. We trained and tested the model with data of young people age 5 and less because they often show no symptomps.
+The goal of this work is to generate an AI which detects Pneumonia on a X-ray thorax image. Input is an grayscale image (224x224) of a X-ray thorax, with the help of a neural network, which we developed the algorithm outputs a 0 or a 1. 0 means no pneumonia, where as 1 means pneumonia is detected. In the future the use of the algorithm could be to support or validate the decision of doctors.
 
 
 ## Related Work
@@ -27,15 +27,24 @@ HIER MUSS NOCH MEHR CONTEXT HIN
 
 
 ## Dataset and Features
-Our work is based on a data set found on kaggle [2]. The dataset contains 5,856 labeled X-ray thorax images (JPEG). These iamges are split into to sets, a training set and a test set. Each set is divided into two sets, NORMAL and PNEUNOMIA. For training we have 5,232 images divided into 1,349 NORMAL and 3,883 PNEUMONIA. To test the algorithm we have 624 images divided into 234 NORMAL and 390 PNEUMONIA. 
+Our work is based on a data set found on kaggle [2]. 
+
+The X-ray images are from patients age one to five from Guangzhou Women and Children's Medical Center [4]. 
+
+The dataset contains 5,856 labeled X-ray thorax images (JPEG). These images are split into to sets, a training set and a test set. Each set is divided into two sets, NORMAL and PNEUNOMIA. For training we have 5,232 images divided into 1,349 NORMAL and 3,883 PNEUMONIA. To test the algorithm we have 624 images divided into 234 NORMAL and 390 PNEUMONIA. 
+
 |                 | Total | Training set | Test set |
 | --------------- | ----- | ------------ | -------- |
 |Number of Images | 5,856 | 5,232        |  624     |
 |Percentage       | 100%  | 89,34%       | 10,66%   |
 
-The original image size varies and is extremely big, so we wrote a python script to down scale all images to size 224x224. You can find the python script in the repository (PythonImageScaler.py). 
+The original image size varies and is extremely big, so we wrote a python script to down scale all images. 
+
+In order to compare the performance between two different image resolutions we decided to scale the images to 224x224 and 56x56.
+You can find the python script in the repository (PythonImageScaler.py). 
+
 Because of the fact that we use grayscale images we only need one color attribute per pixel, instead of three (RGB).
-The X-ray images are from patients age one to five from Guangzhou Women and Children's Medical Center [4].
+
 Example for a NORMAL X-ray thorax:
 
 ![NORMAL](/scaled_chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg)
@@ -44,14 +53,24 @@ Example for a PNEUMONIA X-ray thorax:
 
 ![PNEUMONIA](/scaled_chest_xray/test/PNEUMONIA/BACTERIA-1135262-0004.jpeg)
 
-Data augmentation is not included in the model because X-ray scans are only taken in a specific orientation, and variations such as flips and rotations will not exist in real X-ray images.
+We didn't do any more data augmentation because X-ray scans are only taken in a specific orientation, and variations such as flips and rotations will not exist in real X-ray images.
 
-HIER VIELLEICHT NOCH WAS ZU LOAD DATA
 
 ## Methods
-We decided to implement the algorithm in three ways, the input and the output is always the same. 
 
-One algorithm is a neural network completly from scratch. We wanted to be as flexible as possible, which is why we also implemented the possibility to choose different amount and size of the hidden layers. Also the hyperparameters lambd, learning rate and number of iterations are adjustable. What we did not implement is the training of the hyperparameters.
+We decided that we would like to compare the performance of a neural network and a convolutional neural network.
+
+Implementing the neural network we wanted to try implementing it from scratch and compare it to a Tensorflow neural network afterwards. 
+
+Because implementing a convolutional network from scratch seems pretty complicated, we decided to use Tensorflow to build the CNN.
+
+Therefore we implemented three different solutions.
+
+### 1. Neural network from scratch
+
+We wanted to be as flexible as possible, which is why we also implemented the possibility to choose different amount and size of the hidden layers. The hyperparameters lambda, learning rate and number of iterations are also adjustable. 
+
+We did not implement the training of the hyperparameters.
 
 cost function: ?
 
@@ -59,7 +78,9 @@ hyperparameter: ?
 
 architecture: ?
 
-The second algorithm is also a neural network but it uses Tensorflow. With the help of keras we load the data, create a model and predict the output. 
+### 2. Neural network with Tensorflow
+
+The second algorithm is also a neural network but it uses Tensorflow. With the help of keras we load the data, create a model and predict the output.
 
 loss function: ?
 
@@ -67,6 +88,8 @@ hyperparameter: ?
 
 architecture: ?
 
+
+### 3. Convolutional neural network with Tensorflow
 
 The third algorithm is a convolutional neural network.
 
@@ -88,8 +111,8 @@ HIER DIE ACCURACIES UND UND UND
 
 
 ## References
-[1] https://www.lungeninformationsdienst.de/krankheiten/lungenentzuendung/verbreitung
-[2] https://www.kaggle.com/datasets/tolgadincer/labeled-chest-xray-images
-[3] https://data.mendeley.com/datasets/rscbjbr9sj/2
-[4] https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
-[5] https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5
+- [1] https://www.lungeninformationsdienst.de/krankheiten/lungenentzuendung/verbreitung
+- [2] https://www.kaggle.com/datasets/tolgadincer/labeled-chest-xray-images
+- [3] https://data.mendeley.com/datasets/rscbjbr9sj/2
+- [4] https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
+- [5] https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5
