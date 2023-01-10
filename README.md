@@ -1,7 +1,7 @@
 # PneunomiaDetection
 
 ### Author
-Lukas Benner (...)
+Lukas Benner (3277496)
 
 Kevin Gavagan (...)
 
@@ -44,6 +44,7 @@ Example for a PNEUMONIA X-ray thorax:
 
 ![PNEUMONIA](/scaled_chest_xray/test/PNEUMONIA/BACTERIA-1135262-0004.jpeg)
 
+Data augmentation is not included in the model because X-ray scans are only taken in a specific orientation, and variations such as flips and rotations will not exist in real X-ray images.
 
 HIER VIELLEICHT NOCH WAS ZU LOAD DATA
 
@@ -51,6 +52,7 @@ HIER VIELLEICHT NOCH WAS ZU LOAD DATA
 We decided to implement the algorithm in three ways, the input and the output is always the same. 
 
 One algorithm is a neural network completly from scratch. We wanted to be as flexible as possible, which is why we also implemented the possibility to choose different amount and size of the hidden layers. Also the hyperparameters lambd, learning rate and number of iterations are adjustable. What we did not implement is the training of the hyperparameters.
+
 cost function: ?
 
 hyperparameter: ?
@@ -58,7 +60,8 @@ hyperparameter: ?
 architecture: ?
 
 The second algorithm is also a neural network but it uses Tensorflow. With the help of keras we load the data, create a model and predict the output. 
-cost function: ?
+
+loss function: ?
 
 hyperparameter: ?
 
@@ -66,6 +69,7 @@ architecture: ?
 
 
 The third algorithm is a convolutional neural network.
+
 cost function: ?
 
 hyperparameter: ?
