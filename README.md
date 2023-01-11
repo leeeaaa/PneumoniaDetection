@@ -49,6 +49,11 @@ The dataset contains 5,856 labelled X-ray thorax images (JPEG). These images are
 
 The amount of images being classified as PNEUMONIA is 4273. The number of images being classified as NORMAL is 1583, so the images classified as PNEUMONIA account for 73% of the data set. Therefore the dataset is imbalanced!
 
+|                  | Total | Training set | Test set |
+| ---------------- | ----- | ------------ | -------- |
+| Number of Images | 5,856 | 5,232        | 624      |
+| Percentage       | 100%  | 89,34%       | 10,66%   |
+
 The accuracy metric will therefore not be as meaningful as with a balanced dataset.
 A very weak model, which classifies all images as PNEUMONIA, will reach an accuracy of about 73%.
 
@@ -146,6 +151,10 @@ The CNN uses the same dataset, optimizer and callbacks as the NN described above
 ## Experiments/Results/Discussion
 
 In the following chapters we are going to describe the training results and discuss how the different models perform on the given problem.
+
+All architectures are measured by using recall and precision. 
+recall = 
+precision = 
 
 ### Neural network from scratch
 
