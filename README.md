@@ -142,6 +142,18 @@ In the following chapters we are going to describe the training results and disc
 
 ### Neural network from scratch
 
+We trained the model with a lot of different parameters and layer sizes, but we always had the problem of overfitting. We tried to work against the overfitting by adding regularization which did not bring the desired effect. We measured the performance of the model by accuracy, prescision and recall. To show some different NN architectures and their results we created a comparison. 
+
+As one can see in the comparison the best result can be reached by using a neural network with one hidden layer with a high amount of neurons, in this case 1000 and L2 regularization.
+This model scores the following values:
+- Test Accuracy: ~82.5%
+- Training Accuracy: ~95%
+- Recall: 97,91%
+- Precision: 95,84%
+
+It is noticeable that overfitting is still present, the difference between test and training accuracy is about 7%. We learned that overfitting can be treated by using regularization, by smaller network and by more data. 
+
+
 ### Neural network with Tensorflow
 
 We trained the model with the following parameters:
