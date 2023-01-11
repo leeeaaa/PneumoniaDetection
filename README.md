@@ -68,11 +68,11 @@ This dataset is treated as a classification problem. Here we only classify two d
 - "NORMAL" : 0
 - "PNEUMONIA" : 1
 
-Example for a NORMAL X-ray thorax (downscaled 224x2224):
+Example for a NORMAL X-ray thorax (downscaled to 224x2224):
 
 ![](scaled_chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg)
 
-Example for a PNEUMONIA X-ray thorax (downscaled 224x2224):
+Example for a PNEUMONIA X-ray thorax (downscaled to 224x2224):
 
 ![](scaled_chest_xray/test/PNEUMONIA/BACTERIA-1135262-0004.jpeg)
 
@@ -86,7 +86,7 @@ All hidden layers use as an activation function the Relu-function. Only the very
 
 For the neural network we took the distribution of the dataset. We decided to do nnt tune our hyperparameters because of the flexibility the amount of layers and amount of neurons per layer and depending on the regularization mode lambd and keep_probability are also hyperparameters.
 
-The distribution we used is the following:
+The distribution we used is the following, notice that we have an imbalance:
 
 |                  | Total | Training set | Test set |
 | ---------------- | ----- | ------------ | -------- |
