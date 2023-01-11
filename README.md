@@ -73,11 +73,11 @@ This dataset is treated as a classification problem. Here we only classify two d
 - "NORMAL" : 0
 - "PNEUMONIA" : 1
 
-Example for a NORMAL X-ray thorax (downscaled to 224x2224):
+Example for a NORMAL X-ray thorax (downscaled to 224x224):
 
 ![](scaled_chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg)
 
-Example for a PNEUMONIA X-ray thorax (downscaled to 224x2224):
+Example for a PNEUMONIA X-ray thorax (downscaled to 224x224):
 
 ![](scaled_chest_xray/test/PNEUMONIA/BACTERIA-1135262-0004.jpeg)
 

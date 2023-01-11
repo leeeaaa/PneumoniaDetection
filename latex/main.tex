@@ -40,15 +40,16 @@ Since young children often don't show any signs of Pneumonia, imaging methods su
 In the past years the topic of using an AI to detect diseases has become an increasingly important issue. 
 So why not let an AI do it for you?
 
-- What is the result of our work?
+We implemented three different architectures and compared them. 
+The result was that a convolutional neural network performed best in our case.
 \end{abstract}
 
 \section{Introduction}	
 
 Pneumonia is an inflammation of the lung tissue especially the air sacs in one or both lungs. 
 Symptoms of Pneumonia are cough, shortness of breath, chest pain, fever and dyspnea. 
-The symptomps vary depending on age, health problems, weakened immune system and type of germ, 
-which causes the infection. For example young people often don't show any symtomps at all. 
+The symptoms vary depending on age, health problems, weakened immune system and type of germ, 
+which causes the infection. For example young people often don't show any symptoms at all. 
 Pneumonia is one of the most fatal infectious disease worldwide. 
 In Germany around 400,000 to 600,000 people die per year because of Pneumonia. 
 Especially for children under the age of 5 Pneumonia is the most fatal infection, 
@@ -57,11 +58,14 @@ Pneumonia is caused by microorganisms such as bacteria, viruses and funghi,
 which can be visualized by imaging methods as X-ray or CT. 
 Pneumonia can have a mild to life-threatening course. 
 Bacterial and viral agents are the popular causes but differ in their treatment methods. 
-Bacterial pneumonia needs to be treated with antibiotics, whereas viral pneumonia is treated with antivirals and other supportive care. 
+Bacterial pneumonia needs to be treated with antibiotics, 
+whereas viral pneumonia is treated with antivirals and other supportive care. 
 Therefore it is important to detect pneumonia in an early state to combat the bacteria or virus. 
-Because of the fact that newborns often don't show any signs of the disease the possibility of detecting Pneumonia 
-by imaging methods such as X-ray or CT is an important medical method. 
-Additionally, X-ray is a standard treatment and can help differentiate between the different cause for the infection [1-5].
+
+Because of the fact that newborns often don't show any signs of the disease the possibility 
+of detecting Pneumonia by imaging methods such as X-ray or CT is an important medical method. 
+Additionally, X-ray is a standard treatment and can help differentiate between the different 
+cause for the infection [1-5].
 
 The image below shows X-ray thorax images of a person without pneumonia and a viral and a bacterial caused pneumonia [5].
 
@@ -90,15 +94,18 @@ by creating three different versions.
 Our work is based on a dataset found on kaggle [2]. 
 The original dataset was published on MendleyData and contains thousands of labeled Optical Coherence Tomography (OCT) and chest X-Ray images. 
 The publisher is the University of California San Diego and the Guangthou Women and Children's Medical Center [3]. 
-The data set is used in a lot of algorithms found on kaggle. The approaches are very different, 
-often they use CNN as network, but some also use transfer learning. 
-The project of the University San Diego itself dispicts the developement of a transfer learning algorithm 
-in diagnosis of retinal OCT images which is then used as pretrained algorithm to detect pneunomia on X-ray iamges [5]. 
+The data set is used in a lot of algorithms on kaggle. 
 Taking a look at the activity overview in kaggle one can see, 
-that the data set was downloaded more than 202,000 times and more than 1750 notebooks only on kaggle use the data set. [4]
+that the data set was downloaded more than 202,000 times and more than 1750 notebooks only on kaggle use the data set [4]. 
+The approaches are very different, often they use CNN as network, but some also use transfer learning. 
+The project of the University San Diego itself dispicts the developement of a transfer learning algorithm 
+in diagnosis of retinal OCT images which is then used as pretrained algorithm to detect pneunomia on X-ray iamges [5].
+The neural network from scratch is based on the course material. 
+The neural network with tensorflow also uses the course material and the tensorflow beginner tutorial [6]. 
+The CNN is based on an article on Medium [7].
 
-//TODO
-HIER MUSS NOCH MEHR CONTEXT HIN
+In case of this dataset there are a lot of different projects and notebooks, 
+but our goal was to do as much as possible only by using the course material.
 
 \section{Dataset and Features}
 \label{sec:dataset_and_features}
@@ -110,15 +117,7 @@ The X-ray images are from patients aged one to five from Guangzhou Women and Chi
 The dataset contains 5,856 labelled X-ray thorax images (JPEG). 
 These images are split into to sets, a training set and a test set. Each set is divided into two sets, 
 NORMAL and PNEUNOMIA. For training we have 5,232 images divided into 1,349 NORMAL and 3,883 PNEUMONIA. 
-To test the algorithm we have 624 images divided into 234 NORMAL and 390 PNEUMONIA. 
-
-The amount of images being classified as PNEUMONIA is 4273. 
-The number of images being classified as NORMAL is 1583, 
-so the images classified as PNEUMONIA account for 73\% of the data set. 
-Therefore the dataset is imbalanced!
-
-The accuracy metric will therefore not be as meaningful as with a balanced dataset.
-A very weak model, which classifies all images as PNEUMONIA, will reach an accuracy of about 73\%.
+To test the algorithm we have 624 images divided into 234 NORMAL and 390 PNEUMONIA.
 
 \begin{table}[ht]
 	\centering
@@ -128,35 +127,41 @@ A very weak model, which classifies all images as PNEUMONIA, will reach an accur
   Number of Images & 5,856 & 5,232    & 624 \\ \hline
   Percentage       & 100\% & 89,34\%  & 10,66\% \\ \hline
 	\end{tabular}
-	\caption{Distribution of dataset}
-	\label{tab:distribution_of_dataset}
+	\caption{Distribution train and test set}
+	\label{tab:distribution_train_test}
 \end{table}
+
+The amount of images being classified as PNEUMONIA is 4273. 
+The number of images being classified as NORMAL is 1583, 
+so the images classified as PNEUMONIA account for 73\% of the data set. 
+Therefore the dataset is imbalanced! The accuracy metric will therefore not be as meaningful as with a balanced dataset.
+A very weak model, which classifies all images as PNEUMONIA, will reach an accuracy of about 73\%.
 
 The original images vary in size but overall most exceed over at least 1000 pixels in width. 
 Therefore we wrote a python script to down scale all images, to make it easier to train the Networks.
 
 We scaled the images to 224x224 for both Tensorflow versions. 
 For the Neural Network from scratch we scaled the images to 56x56. 
-The reason will be explained in chapter \glqq{}Neural Network from scratch\grqq{}.
+The reason will be explained in chapter ``Neural Network from scratch''.
 You can find the python script in the repository as well (PythonImageScaler.py).
 
 We also normalized all pixel values from each image from 0-255 to 0.0-1.0.
 
 Besides the two mentioned modifications we didn't perform any further data augmentations on the images. 
 X-ray scans from the chest are always taken one specific way and variations such as flips and rotations will 
-not exist in real X-ray images. That's why we didn't choose to implement more data augementations.
+not exist in real X-ray images. That's why we didn't choose to implement more data augmentations.
 
 As inputs to our Networks we will use all the pixel color values from one image. 
 All images are given as grayscale images. This means each pixel can be described by just a 
 single value rather than three, as this is the case for RGB values.
 
 This dataset is treated as a classification problem. Here we only classify two different cases. 
-Either the X-ray shows no signs of an infection (\glqq{}NORMAL\grqq{}) or one can see Pneumonia 
-developing in the lungs (\glqq{}PNEUMONIA\grqq{}). In the code we represent this binary classification as numbers:
+Either the X-ray shows no signs of an infection (``NORMAL'') or one can see Pneumonia 
+developing in the lungs (``PNEUMONIA''). In the code we represent this binary classification as numbers:
 
 \begin{itemize}
-  \item \glqq{}NORMAL\grqq{} : 0
-  \item \glqq{}PNEUMONIA\grqq{} : 1
+  \item ``NORMAL'' : 0
+  \item ``PNEUMONIA'' : 1
 \end{itemize}
 
 \begin{figure}[ht]
@@ -164,7 +169,7 @@ developing in the lungs (\glqq{}PNEUMONIA\grqq{}). In the code we represent this
   \subfigure[]{\includegraphics[scale=0.30]{../scaled_chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg}}
   \centering
   \subfigure[]{\includegraphics[scale=0.30]{../scaled_chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg}}
-  \caption{Example for a NORMAL and PNEUMONIA X-ray thorax:}
+  \caption{Downscaled example of X-ray thorax: a) NORMAL, b) PNEUMONIA}
   \label{fig:thorax_xRay_example}
 \end{figure}
 
@@ -180,6 +185,9 @@ different number of neurons per hidden layer and the number of hidden layers.
 All hidden layers use as an activation function the Relu-function. 
 Only the very last layer uses the sigmoid function to produce a probability that its either one (“Pneumonia”) 
 or zero (“Normal”).
+
+For the neural network we took the predefined distribution of the dataset. 
+The distribution is shown in table \ref{tab:distribution_train_test}.
 
 As means of training the network, we use Batch Gradient Descent. 
 This is the most CPU-intensive algorithm. 
@@ -231,7 +239,7 @@ The distribution is now the following:
   \label{fig:tensorflow_dataset_distribution}
 \end{figure}
 
-The model uses the \glqq{}Adam\grqq{} optimizer and the loss function is the binary cross-entropy one.
+The model uses the ``Adam'' optimizer and the loss function is the binary cross-entropy one.
 We used drop out to reduce overfitting and implemented a correction for the imbalanced dataset.
 
 In a second training step with fine tuning, we use keras callbacks for checkpoints, 
@@ -263,14 +271,25 @@ The CNN uses the same dataset, optimizer and callbacks as the NN described above
 In the following chapters we are going to describe the training results and discuss how the 
 different models perform on the given problem.
 
+All implementations and architectures are measured by using loss, accuracy, recall, precision and the f1 score. 
+\begin{itemize}
+  \item Loss: 
+  \item Accuracy: 
+  \item Recall: 
+  \item Precision: 
+  \item F1 score: 
+\end{itemize}
+
 \subsection{Neural network from scratch}
 \label{sec:neural_network_from_scratch}
 
 We trained the model with a lot of different parameters and layer sizes, 
 but we always had the problem of overfitting. 
 We tried to work against the overfitting by adding regularization which did not bring the desired effect. 
-We measured the performance of the model by accuracy, prescision and recall. 
+We measured the performance of the model by accuracy, precision and recall. 
 To show some different NN architectures and their results we created a comparison. 
+The comparison can be found in an extra file. 
+For each NN architecture we trained three times to cover the cases: no regularization, L2 regularization and dropout.
 
 As one can see in the comparison the best result can be reached by using a neural network 
 with one hidden layer with a high amount of neurons, in this case 1000 and L2 regularization.
@@ -282,8 +301,10 @@ This model scores the following values:
   \item Precision: 95.84\%
 \end{itemize}
 
-It is noticeable that overfitting is still present, the difference between test and training accuracy is about 7\%. 
-We learned that overfitting can be treated by using regularization, by smaller network and by more data. 
+It is noticeable that overfitting is still present. The difference between test and training accuracy is about 7\%. 
+Our conclusion is that we need more data to reduce the overfitting.
+Unless the overfitting our model performs well, recall and precision values are both very high which is important in our case. 
+Especially the recall should have a very high value as it indicates how many people with pneumonia are really classified as such.
 
 \subsection{Neural network with Tensorflow}
 \label{sec:neural_network_with_tensorflow}
@@ -331,17 +352,22 @@ After the training was completed, the model scored the following values on the t
 According to the F1 score the model performs very good. 
 
 In the case of pneumonia, a higher recall would be preferable to a high precision. 
-The reason is that the probability of a person with pneumonia being classified as such should idealy be 100%.
+The reason is that the probability of a person with pneumonia being classified as such should idealy be 100\%.
 
 \section{Conclusion}
 
+We did not have that one goal to reach, what we wanted to do is implementing three different models and compare them. 
+Overall one can say, that the CNN model has the best outputs. 
+
 \section{References}
 \begin{enumerate}
-  \item https://www.lungeninformationsdienst.de/krankheiten/lungenentzuendung/verbreitung
-  \item https://www.kaggle.com/datasets/tolgadincer/labeled-chest-xray-images
-  \item https://data.mendeley.com/datasets/rscbjbr9sj/2
-  \item https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
-  \item https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5
+  \item [1] https://www.lungeninformationsdienst.de/krankheiten/lungenentzuendung/verbreitung
+  \item [2] https://www.kaggle.com/datasets/tolgadincer/labeled-chest-xray-images
+  \item [3] https://data.mendeley.com/datasets/rscbjbr9sj/2
+  \item [4] https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
+  \item [5] https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5
+  \item [6] https://www.tensorflow.org/tutorials/quickstart/beginner
+  \item [7] https://towardsdatascience.com/deep-learning-for-detecting-pneumonia-from-x-ray-images-fc9a3d9fdba8
 \end{enumerate}
 
 \end{document}
