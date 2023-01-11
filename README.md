@@ -12,7 +12,7 @@ Lea Soffel (4962704)
 
 In this article we describe the development of 3 coding approaches to detect Pneumonia disease on X-ray thorax images with the help of machine learning. Pneumonia is one of the most fatal infections worldwide, especially for young children under 5 and people over 65 the disease often ends deadly. Since young children often don't show any signs of Pneumonia, imaging methods such as X-ray or CT are used to detect the disease. In the past years the topic of using an AI to detect diseases has become an increasingly important issue. So why not let an AI do it for you?
 
-- What is the result of our work?
+We implemented three different achitectures and compared them, resulting that a convolution neural network performs best in our case.
 
 ## Introduction
 
@@ -33,8 +33,11 @@ The goal is to see what different results each version produces, to analyze how 
 
 ## Related Work
 
-Our work is based on a dataset found on kaggle [2]. The original dataset was published on MendleyData and contains thousands of labeled Optical Coherence Tomography (OCT) and chest X-Ray images. The publisher is the University of California San Diego and the Guangthou Women and Children's Medical Center [3] The data set is used in a lot of algorithms found on kaggle. The approaches are very different, often they use CNN as network, but some also use transfer learning. The project of the University San Diego itself dispicts the developement of a transfer learning algorithm in diagnosis of retinal OCT images which is then used as pretrained algorithm to detect pneunomia on X-ray iamges [5]. Taking a look at the activity overview in kaggle one can see, that the data set was downloaded more than 202,000 times and more than 1750 notebooks only on kaggle use the data set. [4]
-HIER MUSS NOCH MEHR CONTEXT HIN
+Our work is based on a dataset found on kaggle [2]. The original dataset was published on MendleyData and contains thousands of labeled Optical Coherence Tomography (OCT) and chest X-Ray images. The publisher is the University of California San Diego and the Guangthou Women and Children's Medical Center. [3] The data set is used in a lot of algorithms on kaggle. Taking a look at the activity overview in kaggle one can see, that the data set was downloaded more than 202,000 times and more than 1750 notebooks only on kaggle use the data set. [4] The approaches are very different, often they use CNN as network, but some also use transfer learning. The project of the University San Diego itself dispicts the developement of a transfer learning algorithm in diagnosis of retinal OCT images which is then used as pretrained algorithm to detect pneunomia on X-ray iamges [5].
+The neural network from scratch is based on the course material. The neural network with tensorflow also uses the course material and the tensorflow beginner tutorial. [6] The CNN is based on an article on Medium [7].
+
+In case of this dataset there are a lot of different projects and notebooks, but our goal was to do as much as possible only by using the course material.
+
 
 ## Dataset and Features
 
@@ -48,11 +51,6 @@ The amount of images being classified as PNEUMONIA is 4273. The number of images
 
 The accuracy metric will therefore not be as meaningful as with a balanced dataset.
 A very weak model, which classifies all images as PNEUMONIA, will reach an accuracy of about 73%.
-
-|                  | Total | Training set | Test set |
-| ---------------- | ----- | ------------ | -------- |
-| Number of Images | 5,856 | 5,232        | 624      |
-| Percentage       | 100%  | 89,34%       | 10,66%   |
 
 The original images vary in size but overall most exceed over at least 1000 pixels in width. Therefore we wrote a python script to down scale all images, to make it easier to train the Networks.
 
@@ -70,11 +68,11 @@ This dataset is treated as a classification problem. Here we only classify two d
 - "NORMAL" : 0
 - "PNEUMONIA" : 1
 
-Example for a NORMAL X-ray thorax:
+Example for a NORMAL X-ray thorax (downscaled to 224x2224):
 
 ![](scaled_chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg)
 
-Example for a PNEUMONIA X-ray thorax:
+Example for a PNEUMONIA X-ray thorax (downscaled to 224x2224):
 
 ![](scaled_chest_xray/test/PNEUMONIA/BACTERIA-1135262-0004.jpeg)
 
@@ -85,6 +83,15 @@ Example for a PNEUMONIA X-ray thorax:
 We wanted to be as flexible as possible, which is why we implemented the possibility to choose different number of neurons per hidden layer and the number of hidden layers.
 
 All hidden layers use as an activation function the Relu-function. Only the very last layer uses the sigmoid function to produce a probability that its either one (“Pneumonia”) or zero (“Normal”).
+
+For the neural network we took the distribution of the dataset. We decided to do nnt tune our hyperparameters because of the flexibility the amount of layers and amount of neurons per layer and depending on the regularization mode lambd and keep_probability are also hyperparameters.
+
+The distribution we used is the following, notice that we have an imbalance:
+
+|                  | Total | Training set | Test set |
+| ---------------- | ----- | ------------ | -------- |
+| Number of Images | 5,856 | 5,232        | 624      |
+| Percentage       | 100%  | 89,34%       | 10,66%   |
 
 As means of training the network, we use Batch Gradient Descent. This is the most CPU-intensive algorithm. It goes through all images of the train set and calculates gradients for each of the parameters. These determine how much and in which direction the weights should be updated to lower the cost.
 
@@ -142,16 +149,21 @@ In the following chapters we are going to describe the training results and disc
 
 ### Neural network from scratch
 
-We trained the model with a lot of different parameters and layer sizes, but we always had the problem of overfitting. We tried to work against the overfitting by adding regularization which did not bring the desired effect. We measured the performance of the model by accuracy, prescision and recall. To show some different NN architectures and their results we created a comparison. 
+We trained the model with a lot of different parameter combinations and layer sizes, but we always had the problem of overfitting. We tried to work against the overfitting by adding regularization which did not bring the desired effect. We measured the performance of the model by accuracy, precision and recall. To show some different NN architectures and their results we created a comparison. The comparison can be found in an extra file (assets/trainingResults/from_scratch_nn/AllTraininResults.pdf). For each NN architecture we trained three times to cover the cases: no regularization, L2 regularization and dropout.
 
 As one can see in the comparison the best result can be reached by using a neural network with one hidden layer with a high amount of neurons, in this case 1000 and L2 regularization.
 This model scores the following values:
+
 - Test Accuracy: ~82.5%
+
 - Training Accuracy: ~95%
+
 - Recall: 97,91%
+
 - Precision: 95,84%
 
-It is noticeable that overfitting is still present, the difference between test and training accuracy is about 7%. We learned that overfitting can be treated by using regularization, by smaller network and by more data. 
+It is noticeable that overfitting is still present, the difference between test and training accuracy is about 7%. Our conclusion is that we need more data to reduce the overfitting. Unless the overfitting our model performs well, recall and precision value are both very high which is important in our case. Especially recall because a high recall determines ???.
+
 
 
 ### Neural network with Tensorflow
@@ -210,6 +222,9 @@ In the case of pneumonia, a higher recall would be preferable to a high precisio
 
 ## Conclusion
 
+We did not have that one goal to reach, what we wanted to do is implementing three different models and compare them. Overall one can say, that the CNN model has the best outputs. 
+
+
 ## References
 
 - [1] https://www.lungeninformationsdienst.de/krankheiten/lungenentzuendung/verbreitung
@@ -217,4 +232,6 @@ In the case of pneumonia, a higher recall would be preferable to a high precisio
 - [3] https://data.mendeley.com/datasets/rscbjbr9sj/2
 - [4] https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
 - [5] https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5
+- [6] https://www.tensorflow.org/tutorials/quickstart/beginner
+- [7] https://towardsdatascience.com/deep-learning-for-detecting-pneumonia-from-x-ray-images-fc9a3d9fdba8
 
