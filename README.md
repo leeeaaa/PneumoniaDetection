@@ -12,7 +12,7 @@ Lea Soffel (4962704)
 
 In this article we describe the development of 3 coding approaches to detect Pneumonia disease on X-ray thorax images with the help of machine learning. Pneumonia is one of the most fatal infections worldwide, especially for young children under 5 and people over 65 the disease often ends deadly. Since young children often don't show any signs of Pneumonia, imaging methods such as X-ray or CT are used to detect the disease. In the past years the topic of using an AI to detect diseases has become an increasingly important issue. So why not let an AI do it for you?
 
-- What is the result of our work?
+We implemented three different achitectures and compared them, resulting that a convolution neural network performs best in our case.
 
 ## Introduction
 
