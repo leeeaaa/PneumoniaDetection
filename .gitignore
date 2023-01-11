@@ -192,3 +192,9 @@ poetry.toml
 /logs
 *.h5 
 # ignore model checkpoints
+
+latex/*
+!latex/main.pdf
+!latex/main.tex
+!latex/nips_2017
+!latex/images
