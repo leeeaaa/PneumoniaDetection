@@ -166,9 +166,9 @@ developing in the lungs (``PNEUMONIA''). In the code we represent this binary cl
 
 \begin{figure}[ht]
   \centering
-  \subfigure[]{\includegraphics[scale=0.30]{../scaled_chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg}}
+  \subfigure[]{\includegraphics[scale=0.30]{../src/scaled_chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg}}
   \centering
-  \subfigure[]{\includegraphics[scale=0.30]{../scaled_chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg}}
+  \subfigure[]{\includegraphics[scale=0.30]{../src/scaled_chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg}}
   \caption{Downscaled example of X-ray thorax: a) NORMAL, b) PNEUMONIA}
   \label{fig:thorax_xRay_example}
 \end{figure}
@@ -298,7 +298,7 @@ but we always had the problem of overfitting.
 We tried to work against the overfitting by adding regularization which did not bring the desired effect. 
 We measured the performance of the model by accuracy, precision and recall. 
 To show some different NN architectures and their results we created a comparison. 
-The comparison can be found in an extra file (assets/trainingResults/from_scratch_nn/AllTrainingResults.pdf). 
+The comparison can be found in an extra file named ``AllTrainingResults.pdf''. 
 For each NN architecture we it trained three times to cover the cases: no regularization, L2 regularization and dropout.
 
 As one can see in the comparison the best result can be reached by using a neural network 
