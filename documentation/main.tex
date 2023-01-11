@@ -271,14 +271,24 @@ The CNN uses the same dataset, optimizer and callbacks as the NN described above
 In the following chapters we are going to describe the training results and discuss how the 
 different models perform on the given problem.
 
-All implementations and architectures are measured by using loss, accuracy, recall, precision and the f1 score. 
+All implementations and architectures are measured by:
+
 \begin{itemize}
-  \item Loss: 
-  \item Accuracy: 
-  \item Recall: 
-  \item Precision: 
-  \item F1 score: 
+  \item Loss
+  \item Accuracy
+  \item Recall
+  \item Precision
+  \item F1 score
 \end{itemize}
+
+The confusion matrix gives a good overview true/false positives and true/false negatives.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=1]{images/confusionMatrix.png}
+  \caption{Confusion matrix}
+  \label{fig:confusion_matrix}
+\end{figure}
 
 \subsection{Neural network from scratch}
 \label{sec:neural_network_from_scratch}
