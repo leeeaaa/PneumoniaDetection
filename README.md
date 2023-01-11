@@ -33,7 +33,7 @@ The goal is to see what different results each version produces, to analyze how 
 
 ## Related Work
 
-Our work is based on a dataset found on kaggle [2]. The data set is used in a lot of algorithms found on kaggle. The Approaches are very different, often they use CNN as network. Another project was found from University of California San Diego [3].
+Our work is based on a dataset found on kaggle [2]. The original dataset was published on MendleyData and contains thousands of labeled Optical Coherence Tomography (OCT) and chest X-Ray images. The publisher is the University of California San Diego and the Guangthou Women and Children's Medical Center [3] The data set is used in a lot of algorithms found on kaggle. The approaches are very different, often they use CNN as network, but some also use transfer learning. The project of the University San Diego itself dispicts the developement of a transfer learning algorithm in diagnosis of retinal OCT images which is then used as pretrained algorithm to detect pneunomia on X-ray iamges [5]. Taking a look at the activity overview in kaggle one can see, that the data set was downloaded more than 202,000 times and more than 1750 notebooks only on kaggle use the data set. [4]
 HIER MUSS NOCH MEHR CONTEXT HIN
 
 ## Dataset and Features
@@ -217,3 +217,4 @@ In the case of pneumonia, a higher recall would be preferable to a high precisio
 - [3] https://data.mendeley.com/datasets/rscbjbr9sj/2
 - [4] https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
 - [5] https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5
+
