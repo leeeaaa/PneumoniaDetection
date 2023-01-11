@@ -33,7 +33,7 @@ The goal is to see what different results each version produces, to analyze how 
 
 ## Related Work
 
-Our work is based on a dataset found on kaggle [2]. The data set is used in a lot of algorithms found on kaggle. The Approaches are very different, often they use CNN as network. Another project was found from University of California San Diego [3].
+Our work is based on a dataset found on kaggle [2]. The original dataset was published on MendleyData and contains thousands of labeled Optical Coherence Tomography (OCT) and chest X-Ray images. The publisher is the University of California San Diego and the Guangthou Women and Children's Medical Center [3] The data set is used in a lot of algorithms found on kaggle. The approaches are very different, often they use CNN as network, but some also use transfer learning. The project of the University San Diego itself dispicts the developement of a transfer learning algorithm in diagnosis of retinal OCT images which is then used as pretrained algorithm to detect pneunomia on X-ray iamges [5]. Taking a look at the activity overview in kaggle one can see, that the data set was downloaded more than 202,000 times and more than 1750 notebooks only on kaggle use the data set. [4]
 HIER MUSS NOCH MEHR CONTEXT HIN
 
 ## Dataset and Features
@@ -142,6 +142,18 @@ In the following chapters we are going to describe the training results and disc
 
 ### Neural network from scratch
 
+We trained the model with a lot of different parameters and layer sizes, but we always had the problem of overfitting. We tried to work against the overfitting by adding regularization which did not bring the desired effect. We measured the performance of the model by accuracy, prescision and recall. To show some different NN architectures and their results we created a comparison. 
+
+As one can see in the comparison the best result can be reached by using a neural network with one hidden layer with a high amount of neurons, in this case 1000 and L2 regularization.
+This model scores the following values:
+- Test Accuracy: ~82.5%
+- Training Accuracy: ~95%
+- Recall: 97,91%
+- Precision: 95,84%
+
+It is noticeable that overfitting is still present, the difference between test and training accuracy is about 7%. We learned that overfitting can be treated by using regularization, by smaller network and by more data. 
+
+
 ### Neural network with Tensorflow
 
 We trained the model with the following parameters:
@@ -205,3 +217,4 @@ In the case of pneumonia, a higher recall would be preferable to a high precisio
 - [3] https://data.mendeley.com/datasets/rscbjbr9sj/2
 - [4] https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
 - [5] https://www.cell.com/cell/fulltext/S0092-8674(18)30154-5
+
